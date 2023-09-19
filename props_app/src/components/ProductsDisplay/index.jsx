@@ -1,5 +1,6 @@
-
-const ProductsDisplay = () => {
+import App from "../../App"
+import { useState } from "react"
+const ProductsDisplay = ({products}) => {
 
     const handleProductClick = (id) => {
         // we have the id of the clicked property
