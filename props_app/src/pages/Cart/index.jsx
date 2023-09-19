@@ -1,18 +1,25 @@
+import React, { useState } from "react";
 
-
-const Cart = () => {
+const Cart = ({ products, setProducts }) => {
+  // const [products] = useCart();
+  const [cart, setCart] =useState([])
   return (
     <div>
-        {/* we need products array here */}
-        {/* {products.filter((product) => {
-            if (product.inCart) {
-                return true
-            } else {
-                return false
-            }
-        })} */}
+      {/* Use a single pair of curly braces */}
+      const cartProducts =()= {{products.filter((product) => {
+        if (product.inCart) {
+          return true;
+        } else {
+          return false;
+        }
+        
+      })}}
+      {cartProducts.map((product)=>{
+        return(product.inCart.name)
+      })}
+
     </div>
-  )
+  );
 }
 
-export default Cart
+export default Cart;

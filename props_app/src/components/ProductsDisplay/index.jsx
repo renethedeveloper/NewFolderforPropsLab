@@ -1,23 +1,35 @@
-import App from "../../App"
-import { useState } from "react"
-const ProductsDisplay = ({products}) => {
+import React, { useState } from "react";
 
-    const handleProductClick = (id) => {
-        // we have the id of the clicked property
-        
-        // 1. make a new products array (from the old state)
-        // 2. set inCart = true for the clicked product
-        // 3. set state to this new products array
+const ProductsDisplay = ({ products, setProducts }) => {
+  const [cart, setCart] = useState([]);
+
+  const addToCart = (product) => {
+    //if the product is not already in the cart
+    if (!product.inCart) {
+      //we fire another function to update products
+      const updatedProducts = products.map((p) =>
+      //if the product clicked on is among the cycle through in the .map, then merge product to inCart
+      //if not, return just the product.
+        p.id === product.id ? { ...p, inCart: true } : p
+      );
+      //set products state to this updated products array
+      setProducts(updatedProducts);
+      //setting state of cart by spreading previous cart and appending product. 
+      //N.B that this is done by putting a function in setCart
+      setCart((prevCart) => [...prevCart, product]);
     }
+  };
 
   return (
     <div>
-        {/* we need the products array here */}
-        {products.map((product) => {
-            return <div onClick={() => handleProductClick(product.id)}>product.name</div>
-        })}
+      {products.map((product) => (
+        <div key={product.id}>
+          <p>{product.name}</p>
+          <button onClick={() => addToCart(product)}>Add To Cart</button>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default ProductsDisplay
+export default ProductsDisplay;
