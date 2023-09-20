@@ -1,6 +1,7 @@
 import ProductsDisplay from "../../components/ProductsDisplay"
+import { createContext } from "react"
 
-const Products = () => {
+const Products = ({children}) => {
   return (
     <div>
         <h1>This is the Products Page!</h1>
